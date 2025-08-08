@@ -25,12 +25,15 @@ class PostListLayout extends Table
     {
         return [
             TD::make('title', 'Title')
+                ->filter(TD::FILTER_TEXT)
                 ->render(function (Post $post) {
                     return Link::make($post->title)
                         ->route('platform.post.edit', $post);
                 }),
+
             TD::make('description', 'Description')
                 ->width('400px')
+                ->filter(TD::FILTER_TEXT)
                 ->render(function (Post $post) {
                     return substr($post->description, 0, 100) . (strlen($post->description) > 100 ? '...' : '');
                 }),

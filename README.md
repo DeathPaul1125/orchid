@@ -3,7 +3,7 @@
 [![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
 [![Orchid](https://img.shields.io/badge/Orchid-5B3CC4?style=for-the-badge&logo=orchid&logoColor=white)](https://orchid.software)
 
-Sistema desarrollado con **Laravel** y **Orchid** para la gestión y venta de créditos de manera eficiente, segura y escalable.
+Demo de Funcionalidades de ORCHID LARAVEL
 
 ---
 
@@ -19,12 +19,8 @@ Sistema desarrollado con **Laravel** y **Orchid** para la gestión y venta de cr
 
 ## 🚀 Características Principales
 
-- Gestión de clientes y créditos.
-- Interfaz administrativa con **Orchid Platform**.
-- Arquitectura sólida basada en **Laravel**.
-- Panel seguro con autenticación y roles.
-- Base de datos relacional y escalable.
-- Reportes y estadísticas.
+- Gestion de POSTS
+- Gestion de Tareas
 
 ---
 
@@ -32,8 +28,8 @@ Sistema desarrollado con **Laravel** y **Orchid** para la gestión y venta de cr
 
 - **Backend:** [Laravel](https://laravel.com) (PHP Framework)
 - **Frontend Administrativo:** [Orchid Platform](https://orchid.software)
-- **Base de Datos:** MySQL / PostgreSQL
-- **Autenticación:** Laravel Breeze / Sanctum
+- **Base de Datos:** MySQL
+- **Autenticación:** ORCHID
 - **Estilos:** TailwindCSS
 
 ---
@@ -42,10 +38,10 @@ Sistema desarrollado con **Laravel** y **Orchid** para la gestión y venta de cr
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/usuario/venta-creditos.git
+git clone https://github.com/DeathPaul1125/orchid.git
 
 # Entrar al directorio
-cd venta-creditos
+cd orchid
 
 # Instalar dependencias
 composer install
