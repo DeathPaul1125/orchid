@@ -116,3 +116,9 @@ Route::screen('task', TaskScreen::class)
     });
 
 Route::screen('state', StateScreen::class)->name('state');
+
+Route::screen('post/{post?}', PostEditScreen::class)
+    ->name('platform.post.edit');
+
+Route::screen('posts', PostListScreen::class)
+    ->name('platform.post.list');

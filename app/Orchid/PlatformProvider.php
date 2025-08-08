@@ -35,6 +35,15 @@ class PlatformProvider extends OrchidServiceProvider
     {
         return [
 
+            Menu::make('Posts')
+                ->icon('bs.file-post')
+                ->route('platform.post.list')
+                ->title('Content')
+                ->badge(function () {
+                    return \App\Models\Post::count();
+                }, Color::DANGER())
+                ->divider(),
+
             Menu::make('Tareas')
                 ->icon('tablet')
                 ->route('platform.task')
