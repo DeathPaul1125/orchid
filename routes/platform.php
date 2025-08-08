@@ -104,4 +104,10 @@ Route::screen('/examples/cards', ExampleCardsScreen::class)->name('platform.exam
 
 // Route::screen('idea', Idea::class, 'platform.screens.idea');
 
-Route::screen('task', TaskScreen::class)->name('platform.task');
+Route::screen('task', TaskScreen::class)
+    ->name('platform.task')
+    ->breadcrumbs(function (Trail $trail) {
+        return $trail
+            ->parent('platform.index')
+            ->push('Tareas');
+    });
