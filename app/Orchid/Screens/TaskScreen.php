@@ -71,18 +71,24 @@ class TaskScreen extends Screen
 
                 TD::make('name'),
 
-                TD::make('Acciones')
+                TD::make('actions', 'Acciones')
                     ->alignRight()
                     ->render(function (Task $task) {
-                        return Button::make('Eliminar')
+                        return Button::make('')
                                 ->confirm('Esta seguro de eliminar esta tarea, dicha opcion no se puede revertir.')
                                 ->method('delete', ['task' => $task->id])
                                 ->icon('trash')
-                            .
-                            Button::make('Editar')
-                                ->method('edit', ['task' => $task->id])
-                            ->icon('pencil');
-                        }),
+                            . ' ' // Añadir un espacio entre los botones
+                            . ModalToggle::make('')
+                                ->modal('taskEditModal')
+                                ->method('update')
+                                ->modalTitle('Editar Tarea: ' . $task->name)
+                                ->asyncParameters([
+                                    'task' => $task->id,
+                                ])
+                                ->asyncMethod('asyncGetTask')
+                                ->icon('pencil');
+                    }),
             ]),
 
             Layout::modal('taskModal', Layout::rows([
@@ -93,6 +99,15 @@ class TaskScreen extends Screen
             ]))
                 ->title('Tarea Nueva')
                 ->applyButton('Nueva Tarea'),
+
+            Layout::modal('taskEditModal', Layout::rows([
+                Input::make('task.name')
+                    ->title('Nombre')
+                    ->value('{{ $task->name }}')
+            ]))
+                ->async('asyncGetTask')
+                ->title('Editar Tarea')
+                ->applyButton('Actualizar'),
         ];
     }
 
@@ -123,19 +138,26 @@ class TaskScreen extends Screen
         $task->delete();
     }
 
+    public function update(Task $task, Request $request)
+    {
+        $request->validate([
+            'task.name' => 'required|max:255',
+        ]);
+
+        $task->name = $request->input('task.name');
+        $task->save();
+    }
     /**
+     * Carga asíncrona de datos para el modal de edición
+     *
      * @param Task $task
      *
-     * @return void
+     * @return array
      */
-    public function edit(Task $task)
+    public function asyncGetTask(Task $task): array
     {
-        return redirect()->route('platform.task')->with([
-            'open' => [
-                'taskModal' => [
-                    'task' => $task
-                ]
-            ]
-        ]);
+        return [
+            'task' => $task,
+        ];
     }
 }
